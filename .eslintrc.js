@@ -39,6 +39,18 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['builtin', 'external'],
+          'internal',
+          'parent',
+          ['sibling', 'index'],
+        ],
+        'newlines-between': 'always-and-inside-groups',
+      },
+    ],
   },
   overrides: [
     {
