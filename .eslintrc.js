@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'react-app',
     'airbnb',
+    'prettier',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
   ],
@@ -29,12 +30,25 @@ module.exports = {
         extensions: ['.tsx'],
       },
     ],
+    'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
+    'react/jsx-props-no-spreading': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
+  overrides: [
+    {
+      // enable the rule specifically for TypeScript files
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': ['warn'],
+      },
+    },
+  ],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
