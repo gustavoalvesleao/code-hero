@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Home from './components/Home';
-import HeroDetails from './components/HeroDetails';
+import CharacterDetails from './components/CharacterDetails';
 import NotFound from './components/NotFound';
 
 import url from './config/urls';
@@ -16,7 +16,7 @@ const App = (): JSX.Element => (
     <ToastContainer />
     <Switch>
       <Route path={url.home} component={Home} />
-      <Route path={url.heroDetails} component={HeroDetails} />
+      <Route path={url.characterDetails} component={CharacterDetails} />
       <Route path={url.notFound} component={NotFound} />
       <Redirect from={url.root} to={url.home} />
       <Redirect to={url.notFound} />

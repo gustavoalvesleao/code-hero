@@ -1,7 +1,7 @@
 export default Object.freeze({
   root: '/',
   home: '/home',
-  heroes: '/heroes',
-  heroDetails: '/heroes/:id',
+  characters: '/characters',
+  characterDetails: '/characters/:id',
   notFound: '/not-found',
 });
