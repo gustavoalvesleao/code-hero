@@ -2,9 +2,6 @@ import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import InputBase from '@material-ui/core/InputBase';
-import Tooltip from '@material-ui/core/Tooltip';
-
-import strings from '../../../locales/search';
 
 import styles from './styles';
 
@@ -43,9 +40,7 @@ const AppSearch = ({
       />
       {!!searchQuery && (
         <div className={classes.clearIcon}>
-          <Tooltip title={strings.tooltip}>
-            <ClearIcon className={classes.icon} onClick={onClearQuery} />
-          </Tooltip>
+          <ClearIcon className={classes.icon} onClick={onClearQuery} />
         </div>
       )}
     </div>
