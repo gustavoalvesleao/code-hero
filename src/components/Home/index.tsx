@@ -9,6 +9,7 @@ import Pagination, {
 } from '../commons/Pagination';
 import AppSearch from '../commons/Search';
 import CharactersContainer from '../CharactersContainer';
+import withLoading, { SetLoadingType } from '../commons/HOC/WithLoading';
 
 import characterService, { Character } from '../../services/characterService';
 
@@ -44,7 +45,8 @@ const pageInfoInitialValues = {
   hasPrevPage: false,
 };
 
-const Home = (): JSX.Element => {
+const Home = (props: SetLoadingType): JSX.Element => {
+  const { setLoading } = props;
   const classes = styles();
 
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -66,6 +68,7 @@ const Home = (): JSX.Element => {
 
   const getCharacters = useCallback(async (): Promise<void> => {
     try {
+      setLoading(true);
       const { data } = await characterService.getCharacters(queryParams);
       const { data: innerData } = data;
       const { results, total, count } = innerData;
@@ -79,10 +82,12 @@ const Home = (): JSX.Element => {
       }
 
       setCharacters(results);
+      setLoading(false);
     } catch (ex) {
+      setLoading(false);
       toast.error(`${strings.error} ${ex}`);
     }
-  }, [queryParams]);
+  }, [queryParams, setLoading]);
 
   useEffect(() => {
     getCharacters();
@@ -108,6 +113,7 @@ const Home = (): JSX.Element => {
   const handlePageChange = async (paginateTo: string): Promise<void> => {
     const { newPageInfo, params } = getUpdatedPaginationInfo(paginateTo);
     try {
+      setLoading(true);
       const { data } = await characterService.getCharacters(params);
       const { data: innerData } = data;
       const { results, offset, count } = innerData;
@@ -123,7 +129,9 @@ const Home = (): JSX.Element => {
 
       setCharacters(results);
       setPageInfo(newPageInfo);
+      setLoading(false);
     } catch (ex) {
+      setLoading(false);
       toast.error(`${strings.error} ${ex}`);
     }
   };
@@ -186,4 +194,4 @@ const Home = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default withLoading(Home);
