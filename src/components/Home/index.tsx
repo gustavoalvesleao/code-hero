@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 import Pagination, {
   NEXT_PAGE_ACTION,
   PREV_PAGE_ACTION,
 } from '../commons/Pagination';
+import AppSearch from '../commons/Search';
+import CharactersContainer from '../CharactersContainer';
 
 import characterService, { Character } from '../../services/characterService';
 
 import strings from '../../locales/home';
-import AppSearch from '../commons/Search';
+
+import styles from './styles';
 
 interface QueryParams {
   name?: string;
@@ -41,6 +45,8 @@ const pageInfoInitialValues = {
 };
 
 const Home = (): JSX.Element => {
+  const classes = styles();
+
   const [characters, setCharacters] = useState<Character[]>([]);
   const charactersLimitArray = useState(10);
   const charactersLimit = charactersLimitArray[0];
@@ -146,49 +152,38 @@ const Home = (): JSX.Element => {
     setQueryParams(params);
   };
 
-  if (!hasCharacters)
-    return <Typography variant="h4">{strings.noCharacter}</Typography>;
-
   return (
     <>
-      <div style={styles.search}>
-        <AppSearch
-          searchQuery={nameSearchQuery}
-          placeHolder={strings.searchPlaceholder}
-          onChange={handleNameQueryChange}
-          onKeyPress={handleSearch}
-          onClearQuery={handleClearQuery}
-        />
-      </div>
-      <div style={styles.mainDiv}>
-        {characters.map((char) => (
-          <div key={char.id} style={styles.card}>
-            {char.name}
+      <div className={classes.home}>
+        <Container>
+          <Typography variant="h2" className={classes.title}>
+            {strings.title}
+          </Typography>
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            {strings.subtitle}
+          </Typography>
+          <div className={classes.search}>
+            <AppSearch
+              searchQuery={nameSearchQuery}
+              placeHolder={strings.searchPlaceholder}
+              onChange={handleNameQueryChange}
+              onKeyPress={handleSearch}
+              onClearQuery={handleClearQuery}
+            />
           </div>
-        ))}
-        <Pagination pageInfo={pageInfo} onPageChange={handlePageChange} />
+          {!hasCharacters && (
+            <Typography className={classes.noChar} variant="h5">
+              {strings.noCharacter}
+            </Typography>
+          )}
+          {hasCharacters && <CharactersContainer characters={characters} />}
+        </Container>
       </div>
+      {hasCharacters && (
+        <Pagination pageInfo={pageInfo} onPageChange={handlePageChange} />
+      )}
     </>
   );
 };
-
-const styles = {
-  mainDiv: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    alignContent: 'space-between',
-  },
-  card: {
-    padding: '100px',
-    backgroundColor: 'tomato',
-    width: '30%',
-    height: '100px',
-    marginBottom: '10px',
-  },
-  search: {
-    marginBottom: '20px',
-  },
-} as const;
 
 export default Home;

@@ -27,8 +27,8 @@ const AppSearch = ({
 
   return (
     <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
+      <div className={classes.searchIconContainer}>
+        <SearchIcon className={classes.icon} />
       </div>
       <InputBase
         placeholder={placeHolder}
@@ -44,7 +44,7 @@ const AppSearch = ({
       {!!searchQuery && (
         <div className={classes.clearIcon}>
           <Tooltip title={strings.tooltip}>
-            <ClearIcon onClick={onClearQuery} />
+            <ClearIcon className={classes.icon} onClick={onClearQuery} />
           </Tooltip>
         </div>
       )}

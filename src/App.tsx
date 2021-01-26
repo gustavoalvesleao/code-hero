@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Home from './components/Home';
 import CharacterDetails from './components/CharacterDetails';
 import NotFound from './components/NotFound';
+import Header from './components/Header';
 
 import url from './config/urls';
 
@@ -14,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = (): JSX.Element => (
   <>
     <ToastContainer />
+    <Header />
     <Switch>
       <Route path={url.home} component={Home} />
       <Route path={url.characterDetails} component={CharacterDetails} />

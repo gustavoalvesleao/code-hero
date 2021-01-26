@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   },
   palette: {
     text: {
-      primary: colors.black,
+      primary: colors.darkSmoke,
     },
   },
   overrides: {

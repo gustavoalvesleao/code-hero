@@ -28,6 +28,7 @@ const Pagination = ({ pageInfo, onPageChange }: Props): JSX.Element => {
       </Typography>
       <Button
         variant="contained"
+        size="small"
         disabled={!hasPrevPage}
         onClick={(): void => onPageChange(PREV_PAGE_ACTION)}
         className={classes.item}
@@ -36,6 +37,7 @@ const Pagination = ({ pageInfo, onPageChange }: Props): JSX.Element => {
       </Button>
       <Button
         variant="contained"
+        size="small"
         disabled={!hasNextPage}
         onClick={(): void => onPageChange(NEXT_PAGE_ACTION)}
         className={classes.item}

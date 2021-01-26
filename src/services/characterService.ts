@@ -1,25 +1,24 @@
 import http from './httpService';
 
-interface Thumbnail {
-  path: string;
-  extension: string;
+interface CharactersResponse {
+  code: string;
+  status: string;
+  copyright: string;
+  attributionText: string;
+  attributionHTML: string;
+  etag: string;
+  data: Data;
 }
 
-interface CharacterMaterial {
-  available: number;
-  collectionURI: string;
-  items: Array<CharacterMaterialItems>;
-  returned: number;
+interface Data {
+  data: Results;
 }
 
-interface CharacterMaterialItems {
-  resourceURI: string;
-  name: string;
-}
-
-interface UrlItems {
-  type: string;
-  url: string;
+interface Results {
+  total: number;
+  offset: number;
+  count: number;
+  results: Array<Character>;
 }
 
 export interface Character {
@@ -36,25 +35,26 @@ export interface Character {
   urls: Array<UrlItems>;
 }
 
-interface Results {
-  total: number;
-  offset: number;
-  count: number;
-  results: Array<Character>;
+export interface Thumbnail {
+  path: string;
+  extension: string;
 }
 
-interface Data {
-  data: Results;
+interface CharacterMaterial {
+  available: number;
+  collectionURI: string;
+  items: Array<CharacterMaterialItems>;
+  returned: number;
 }
 
-interface CharactersResponse {
-  code: string;
-  status: string;
-  copyright: string;
-  attributionText: string;
-  attributionHTML: string;
-  etag: string;
-  data: Data;
+export interface CharacterMaterialItems {
+  resourceURI: string;
+  name: string;
+}
+
+interface UrlItems {
+  type: string;
+  url: string;
 }
 
 interface QueryParams {
