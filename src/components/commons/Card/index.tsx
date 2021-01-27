@@ -12,17 +12,23 @@ interface Props {
   content2: Array<string>;
 }
 
+interface Keys {
+  index: number;
+  cont: string;
+}
+
+const getUniqueKey = ({ cont, index }: Keys): string =>
+  `${cont}-${Date.now()}-${index}`;
+
 const Card = ({ imgURI, title, content1, content2 }: Props): JSX.Element => {
   const classes = styles();
 
   const renderContent = (content: Array<string>): JSX.Element[] | string => {
     if (content?.length === 0) return strings.noData;
-    return content.map((cont) => (
-      <ul className={classes.list} key={cont}>
-        <li className={classes.listItem} key={`${cont}-text`}>
-          {cont}
-        </li>
-      </ul>
+    return content.map((cont, index) => (
+      <li className={classes.listItem} key={getUniqueKey({ cont, index })}>
+        {cont}
+      </li>
     ));
   };
 
