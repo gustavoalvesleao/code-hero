@@ -73,10 +73,9 @@ const Home = (props: SetLoadingType): JSX.Element => {
       const { data: innerData } = data;
       const { results, total, count } = innerData;
 
-      const newPageInfo = { ...pageInfoInitialValues };
-
       // This indicates that there are more characters in the server
       if (count < total) {
+        const newPageInfo = { ...pageInfoInitialValues };
         newPageInfo.hasNextPage = true;
         setPageInfo(newPageInfo);
       }
@@ -164,7 +163,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
     setPageInfo(pageInfoInitialValues);
 
     const params = { ...queryParams };
-    params.offset = 1;
+    params.offset = 0;
     delete params.name;
     setQueryParams(params);
   };
