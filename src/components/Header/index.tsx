@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import urls from '../../config/urls';
@@ -13,13 +13,13 @@ const Header = (): JSX.Element => {
 
   return (
     <div className={classes.header}>
-      <a rel="noopener noreferrer" target="_blank" href={urls.objective}>
+      <Link to={urls.home}>
         <img
           className={classes.logo}
           src={objectiveLogo}
           alt="objective-logo"
         />
-      </a>
+      </Link>
       <Typography variant="subtitle1" className={classes.title}>
         {strings.title}
       </Typography>

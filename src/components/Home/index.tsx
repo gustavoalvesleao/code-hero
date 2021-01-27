@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -64,7 +64,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
     limit: charactersLimit,
   });
 
-  const hasCharacters = !!characters?.length;
+  const hasCharacters = useMemo(() => !!characters?.length, [characters]);
 
   const getCharacters = useCallback(async (): Promise<void> => {
     try {
@@ -93,6 +93,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
     getCharacters();
   }, [getCharacters]);
 
+  // This function will get all the information necessary to navigate to the next/prev page
   const getUpdatedPaginationInfo = (paginateTo: string): PaginationInfo => {
     const newPageInfo = { ...pageInfo };
     const params = { ...queryParams };
@@ -123,6 +124,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
         newPageInfo.hasNextPage = false;
       }
 
+      // If the offset is 0, indicates that the current page is 1, so no previous page
       if (offset === 0) {
         newPageInfo.hasPrevPage = false;
       }
@@ -147,6 +149,13 @@ const Home = (props: SetLoadingType): JSX.Element => {
       params.offset = 0;
       params.name = nameSearchQuery;
       setQueryParams(params);
+
+      // TODO: test
+      // setQueryParams({
+      //   ...queryParams,
+      //   offset: 0,
+      //   name: nameSearchQuery,
+      // });
     }
   };
 

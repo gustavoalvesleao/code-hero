@@ -10,6 +10,7 @@ import theme from './theme';
 
 import './index.css';
 
+// TODO: Change to HashRouter
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

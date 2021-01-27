@@ -47,13 +47,11 @@ const styles = makeStyles((theme) => ({
     },
     flex: '1 1 300px',
   },
-  list: {
+  listItem: {
+    fontSize: '16px',
     listStyleType: 'none',
     margin: 0,
     padding: 0,
-  },
-  listItem: {
-    fontSize: '16px',
   },
 }));
 

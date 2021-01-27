@@ -4,5 +4,4 @@ export default Object.freeze({
   characters: '/characters',
   characterDetails: '/characters/:id',
   notFound: '/not-found',
-  objective: 'https://www.objective.com.br/',
 });

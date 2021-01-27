@@ -6,6 +6,7 @@ const styles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: '20px 24px',
+    boxShadow: '0px 0px 5px #00000033',
   },
   logo: {
     width: '192px',

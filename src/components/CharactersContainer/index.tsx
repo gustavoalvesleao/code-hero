@@ -8,6 +8,7 @@ import {
   CharacterMaterialItems,
   Thumbnail,
 } from '../../services/characterService';
+import { urlToHttps } from '../../utils/characterHelper';
 
 import strings from '../../locales/charactersContainer';
 
@@ -19,26 +20,28 @@ interface Props {
 
 const imageURIVariant = 'standard_small';
 
+// Only three items (max) will be displayed for each category
+const getItems = (
+  items: Array<CharacterMaterialItems>,
+  numberOfItems: number,
+): Array<string> => {
+  const itemsName: Array<string> = [];
+  items.forEach((element, index) => {
+    if (index < numberOfItems) {
+      itemsName.push(element.name);
+      return true;
+    }
+    return false;
+  });
+  return itemsName;
+};
+
+// This function builds the url to get a given thumbnail
+const buildThumbnailUrl = (thumbnail: Thumbnail, imageURI: string): string =>
+  `${urlToHttps(thumbnail.path)}/${imageURI}.${thumbnail.extension}`;
+
 const CharactersContainer = ({ characters }: Props): JSX.Element => {
   const classes = styles();
-
-  const getItems = (series: Array<CharacterMaterialItems>): Array<string> => {
-    const itemsName: Array<string> = [];
-    series.forEach((element, index) => {
-      if (index < 3) {
-        itemsName.push(element.name);
-        return true;
-      }
-      return false;
-    });
-    return itemsName;
-  };
-
-  const urlToHttps = (url: string): string =>
-    url.replace(/^http:\/\//i, 'https://');
-
-  const buildThumbnailUrl = (thumbnail: Thumbnail): string =>
-    `${urlToHttps(thumbnail.path)}/${imageURIVariant}.${thumbnail.extension}`;
 
   return (
     <div className={classes.container}>
@@ -65,10 +68,11 @@ const CharactersContainer = ({ characters }: Props): JSX.Element => {
       {characters.map((char) => (
         <Card
           key={char.id}
-          imgURI={buildThumbnailUrl(char.thumbnail)}
+          imgURI={buildThumbnailUrl(char.thumbnail, imageURIVariant)}
           title={char.name}
-          content1={getItems(char.series.items)}
-          content2={getItems(char.events.items)}
+          content1={getItems(char.series.items, 3)}
+          content2={getItems(char.events.items, 3)}
+          id={char.id}
         />
       ))}
     </div>
