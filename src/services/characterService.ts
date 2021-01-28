@@ -73,6 +73,12 @@ const getCharacters = async (
   return http.get(endpoint, { params });
 };
 
+const getCharacter = async (id: string): Promise<CharactersResponse> => {
+  const params = { apikey: publicApiKey };
+  return http.get(`${endpoint}/${id}`, { params });
+};
+
 export default {
   getCharacters,
+  getCharacter,
 };

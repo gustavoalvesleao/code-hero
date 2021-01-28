@@ -144,17 +144,11 @@ const Home = (props: SetLoadingType): JSX.Element => {
     if (key === KEY_ENTER && !!nameSearchQuery) {
       setPageInfo(pageInfoInitialValues);
 
-      const params = { ...queryParams };
-      params.offset = 0;
-      params.name = nameSearchQuery;
-      setQueryParams(params);
-
-      // TODO: test
-      // setQueryParams({
-      //   ...queryParams,
-      //   offset: 0,
-      //   name: nameSearchQuery,
-      // });
+      setQueryParams({
+        ...queryParams,
+        offset: 0,
+        name: nameSearchQuery,
+      });
     }
   };
 

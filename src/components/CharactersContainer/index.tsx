@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import Card from '../commons/Card';
@@ -11,6 +12,7 @@ import {
 import { urlToHttps } from '../../utils/characterHelper';
 
 import strings from '../../locales/charactersContainer';
+import urls from '../../config/urls';
 
 import styles from './styles';
 
@@ -42,6 +44,12 @@ const buildThumbnailUrl = (thumbnail: Thumbnail, imageURI: string): string =>
 
 const CharactersContainer = ({ characters }: Props): JSX.Element => {
   const classes = styles();
+  const history = useHistory();
+
+  const handleCardClicked = useCallback(
+    (id) => history.push(`${urls.characters}/${id}`),
+    [history],
+  );
 
   return (
     <div className={classes.container}>
@@ -72,7 +80,7 @@ const CharactersContainer = ({ characters }: Props): JSX.Element => {
           title={char.name}
           content1={getItems(char.series.items, 3)}
           content2={getItems(char.events.items, 3)}
-          id={char.id}
+          onClick={(): void => handleCardClicked(char.id)}
         />
       ))}
     </div>

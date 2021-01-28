@@ -1,10 +1,8 @@
-import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import { getUniqueKey } from '../../../utils/characterHelper';
 import strings from '../../../locales/card';
-import urls from '../../../config/urls';
 
 import styles from './styles';
 
@@ -13,7 +11,7 @@ interface Props {
   title: string;
   content1: Array<string>;
   content2: Array<string>;
-  id: number;
+  onClick(): void;
 }
 
 const Card = ({
@@ -21,15 +19,9 @@ const Card = ({
   title,
   content1,
   content2,
-  id,
+  onClick,
 }: Props): JSX.Element => {
   const classes = styles();
-  const history = useHistory();
-
-  const handleOnClick = useCallback(
-    () => history.push(`${urls.characters}/${id}`),
-    [history, id],
-  );
 
   const renderContent = (content: Array<string>): JSX.Element[] | string => {
     if (content?.length === 0) return strings.noData;
@@ -45,7 +37,7 @@ const Card = ({
     <div
       role="button"
       tabIndex={0}
-      onClick={handleOnClick}
+      onClick={onClick}
       className={classes.cardContainer}
     >
       <div className={classes.innerContainer}>
