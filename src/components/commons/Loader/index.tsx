@@ -1,7 +1,7 @@
 import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 
-import animation from '../../../../assets/animations/loader.json';
+import animation from '../../../assets/animations/loader.json';
 
 import styles from './styles';
 

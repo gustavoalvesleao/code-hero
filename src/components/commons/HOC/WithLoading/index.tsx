@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Loader from '../../Animations/Loader';
+import Loader from '../../Loader';
 
 export type SetLoadingType = {
   setLoading: (loading: boolean) => void;
