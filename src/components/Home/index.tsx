@@ -11,9 +11,11 @@ import AppSearch from '../commons/Search';
 import CharactersContainer from '../CharactersContainer';
 import withLoading, { SetLoadingType } from '../commons/HOC/WithLoading';
 
-import characterService, { Character } from '../../services/characterService';
+import characterService from '../../services/characterService';
 
 import strings from '../../locales/home';
+
+import { Character } from '../../interfaces/character';
 
 import styles from './styles';
 
@@ -84,7 +86,9 @@ const Home = (props: SetLoadingType): JSX.Element => {
       setLoading(false);
     } catch (ex) {
       setLoading(false);
-      toast.error(`${strings.error} ${ex}`);
+      if (ex?.response?.status === 409) {
+        toast.error(`${strings.error} ${ex}`);
+      }
     }
   }, [queryParams, setLoading]);
 
@@ -133,7 +137,9 @@ const Home = (props: SetLoadingType): JSX.Element => {
       setLoading(false);
     } catch (ex) {
       setLoading(false);
-      toast.error(`${strings.error} ${ex}`);
+      if (ex?.response?.status === 409) {
+        toast.error(`${strings.error} ${ex}`);
+      }
     }
   };
 

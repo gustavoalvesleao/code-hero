@@ -4,15 +4,12 @@ import Typography from '@material-ui/core/Typography';
 
 import Card from '../commons/Card';
 
-import {
-  Character,
-  CharacterMaterialItems,
-  Thumbnail,
-} from '../../services/characterService';
-import { urlToHttps } from '../../utils/characterHelper';
+import { buildThumbnailUrl } from '../../utils/characterHelper';
 
 import strings from '../../locales/charactersContainer';
 import urls from '../../config/urls';
+
+import { Character, CharacterMaterialItems } from '../../interfaces/character';
 
 import styles from './styles';
 
@@ -20,7 +17,7 @@ interface Props {
   characters: Array<Character>;
 }
 
-const imageURIVariant = 'standard_small';
+const IMAGE_VARIANT = 'standard_small';
 
 // Only three items (max) will be displayed for each category
 const getItems = (
@@ -37,10 +34,6 @@ const getItems = (
   });
   return itemsName;
 };
-
-// This function builds the url to get a given thumbnail
-const buildThumbnailUrl = (thumbnail: Thumbnail, imageURI: string): string =>
-  `${urlToHttps(thumbnail.path)}/${imageURI}.${thumbnail.extension}`;
 
 const CharactersContainer = ({ characters }: Props): JSX.Element => {
   const classes = styles();
@@ -76,7 +69,7 @@ const CharactersContainer = ({ characters }: Props): JSX.Element => {
       {characters.map((char) => (
         <Card
           key={char.id}
-          imgURI={buildThumbnailUrl(char.thumbnail, imageURIVariant)}
+          imgURI={buildThumbnailUrl(char.thumbnail, IMAGE_VARIANT)}
           title={char.name}
           content1={getItems(char.series.items, 3)}
           content2={getItems(char.events.items, 3)}

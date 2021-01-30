@@ -17,7 +17,7 @@ export default function withLoading<P>(
     return (
       <>
         {isLoading && <Loader />}
-        <Component {...props} setLoading={setLoading} />;
+        <Component {...props} setLoading={setLoading} />
       </>
     );
   };
