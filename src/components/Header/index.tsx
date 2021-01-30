@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 
 import urls from '../../config/urls';
 import objectiveLogo from '../../assets/img/logo-objective.png';
@@ -20,9 +19,14 @@ const Header = (): JSX.Element => {
           alt="objective-logo"
         />
       </Link>
-      <Typography variant="subtitle1" className={classes.title}>
+      <a
+        className={classes.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/gustavoalvesleao/code-hero"
+      >
         {strings.title}
-      </Typography>
+      </a>
     </div>
   );
 };

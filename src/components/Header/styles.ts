@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+import colors from '../../config/colors';
+
 const styles = makeStyles((theme) => ({
   header: {
     display: 'flex',
@@ -16,9 +18,12 @@ const styles = makeStyles((theme) => ({
       height: '24px',
     },
   },
-  title: {
+  link: {
+    textDecoration: 'none',
     marginLeft: 'auto',
     fontFamily: 'Marvel-Black',
+    color: colors.darkSmoke,
+    fontSize: '32px',
   },
 }));
 

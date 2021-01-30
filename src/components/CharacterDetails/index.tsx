@@ -157,13 +157,13 @@ const CharacterDetails = (props: Props): JSX.Element => {
       <div>
         <Container>
           <div className={classes.mediaContainer}>
-            <MediaContainer media={comics} title={medias.COMICS} />
+            <MediaContainer media={comics} title={strings.comics} />
           </div>
           <div className={classes.mediaContainer}>
-            <MediaContainer media={series} title={medias.SERIES} />
+            <MediaContainer media={series} title={strings.series} />
           </div>
           <div className={classes.mediaContainer}>
-            <MediaContainer media={events} title={medias.EVENTS} />
+            <MediaContainer media={events} title={strings.events} />
           </div>
         </Container>
       </div>
