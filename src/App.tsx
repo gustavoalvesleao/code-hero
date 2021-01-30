@@ -1,28 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-function App(): JSX.Element {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.tsx</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Home from './components/Home';
+import CharacterDetails from './components/CharacterDetails';
+import NotFound from './components/NotFound';
+import Header from './components/Header';
+
+import url from './config/urls';
+
+import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+const App = (): JSX.Element => (
+  <>
+    <ToastContainer />
+    <Header />
+    <Switch>
+      <Route path={url.home} component={Home} />
+      <Route path={url.characterDetails} component={CharacterDetails} />
+      <Route path={url.notFound} component={NotFound} />
+      <Redirect from={url.root} to={url.home} />
+      <Redirect to={url.notFound} />
+    </Switch>
+  </>
+);
 
 export default App;

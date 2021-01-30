@@ -1,13 +1,28 @@
+/* --------------------------------
+    Custom Fonts
+----------------------------------- */
+
+@font-face {
+  font-family: Marvel-Black;
+  src: url("./assets/fonts/MarvelRegular-Dj83.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Marvel-Bold;
+  src: url("./assets/fonts/Marvel-Bold.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Marvel-Regular;
+  src: url("./assets/fonts/Marvel-Regular.ttf") format("opentype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Marvel-Regular, sans-serif;
+  color: #2D3136;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
