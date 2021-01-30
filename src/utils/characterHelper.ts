@@ -26,5 +26,12 @@ export const getUrl = (CharUrls: Array<UrlItems>, type: string): string => {
       charUrl = url.url.substring(0, url.url.indexOf('?u'));
     }
   });
+  if (charUrl) return charUrl;
+  CharUrls.forEach((url) => {
+    if (url.type === 'detail') {
+      // Remove the apikey param returned from the api
+      charUrl = url.url.substring(0, url.url.indexOf('?u'));
+    }
+  });
   return charUrl;
 };
