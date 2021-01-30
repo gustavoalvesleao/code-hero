@@ -44,7 +44,7 @@ export interface CharacterMaterialItems {
   name: string;
 }
 
-interface UrlItems {
+export interface UrlItems {
   type: string;
   url: string;
 }
@@ -70,9 +70,10 @@ interface MediaData {
   data: Results<Media>;
 }
 
-interface Media {
+export interface Media {
   title: string;
   thumbnail: Thumbnail;
+  urls: Array<UrlItems>;
 }
 
 // Generic interfaces

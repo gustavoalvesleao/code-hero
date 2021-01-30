@@ -1,3 +1,29 @@
+# Code-Hero
+
+This project lists every character of Marvel Universe, consuming the public Marvel API. 
+You can try it out [here!](https://mystifying-lamarr-5a9cae.netlify.app)
+
+### Homepage
+
+The homepage is under the URL /home. This page contains a search box, a table, and a pagination element.
+The table is composed of 10 Cards, and for each character is displayed its photo, name, series, and events.
+
+It is possible to search for a character by name. You must provide the full name,
+otherwise, the search will not return any results.
+When the search box is not empty, an "x" button (clear button) is displayed inside the box.
+When clicked, will erase the search input and perform a new request to get all characters again.
+This can be useful when you already performed a search (no data was obtained), and you want
+to reset the results.
+
+Getting more characters from the API is possible through the pagination element at the
+bottom of the page.
+
+### Details
+
+This page is under the URL /characters/:id and more information about a given character is displayed.
+Along with the character description, a list of comics, series and events are displayed in cards, and which
+one has a link to the original source in the Marvel's website.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

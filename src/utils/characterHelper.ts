@@ -1,6 +1,6 @@
 // The thumbnails urls are using http. When the application is hosted
 // in a https domain, warnings were being raised
-import { Thumbnail } from '../interfaces/character';
+import { Thumbnail, UrlItems } from '../interfaces/character';
 
 export const urlToHttps = (url: string): string =>
   url.replace(/^http:\/\//i, 'https://');
@@ -13,5 +13,18 @@ export const getUniqueKey = (cont: string, index: number): string =>
 // This function builds the url to get a given thumbnail
 export const buildThumbnailUrl = (
   thumbnail: Thumbnail,
-  imageURI: string,
-): string => `${urlToHttps(thumbnail.path)}/${imageURI}.${thumbnail.extension}`;
+  imageVariant: string,
+): string =>
+  `${urlToHttps(thumbnail.path)}/${imageVariant}.${thumbnail.extension}`;
+
+// This function get an array of urls and return the value of the type passed as a parameter
+export const getUrl = (CharUrls: Array<UrlItems>, type: string): string => {
+  let charUrl = '';
+  CharUrls.forEach((url) => {
+    if (url.type === type) {
+      // Remove the apikey param returned from the api
+      charUrl = url.url.substring(0, url.url.indexOf('?u'));
+    }
+  });
+  return charUrl;
+};

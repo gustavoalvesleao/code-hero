@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import withLoading, { SetLoadingType } from '../commons/HOC/WithLoading';
+import MediaContainer from '../MediaContainer';
 
 import {
   Character,
@@ -15,7 +16,7 @@ import {
 import characterService from '../../services/characterService';
 import urls from '../../config/urls';
 import strings from '../../locales/characterDetails';
-import { buildThumbnailUrl } from '../../utils/characterHelper';
+import { buildThumbnailUrl, getUrl } from '../../utils/characterHelper';
 
 import styles from './styles';
 
@@ -30,6 +31,8 @@ interface QueryParams {
 type Props = RouteComponentProps<MatchParams> & SetLoadingType;
 
 const IMAGE_VARIANT = 'portrait_uncanny';
+const URL_TYPE = 'wiki';
+
 const medias = { COMICS: 'comics', SERIES: 'series', EVENTS: 'events' };
 const queryParams: QueryParams = { limit: 5 };
 
@@ -64,6 +67,7 @@ const CharacterDetails = (props: Props): JSX.Element => {
     }
   }, [characterId, history]);
 
+  // This function will get the comics, series and events for a given character id
   const getCharacterMedias = useCallback(async () => {
     try {
       const response = await Promise.allSettled([
@@ -113,10 +117,56 @@ const CharacterDetails = (props: Props): JSX.Element => {
 
   return (
     <>
-      <div>{JSON.stringify(character)}</div>
-      <div>{JSON.stringify(character)}</div>
-      <div>{JSON.stringify(character)}</div>
-      <div>{JSON.stringify(character)}</div>)
+      <div className={classes.mainContainer}>
+        <Container>
+          <div className={classes.charInfoContainer}>
+            <div className={classes.charImageContainer}>
+              <img
+                src={buildThumbnailUrl(character.thumbnail, IMAGE_VARIANT)}
+                alt="char-img"
+              />
+            </div>
+            <div className={classes.charDescription}>
+              <Typography className={classes.charName} variant="h4">
+                {character.name.toUpperCase()}
+              </Typography>
+              {character.description ? (
+                <Typography variant="h6">{character.description}</Typography>
+              ) : (
+                <Typography variant="h6">{strings.noDescription}</Typography>
+              )}
+              <div className={classes.moreInfoContainer}>
+                <Typography variant="subtitle2">
+                  {strings.charLink}
+                  <span>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={getUrl(character.urls, URL_TYPE)}
+                      className={classes.link}
+                    >
+                      {strings.here}
+                    </a>
+                  </span>
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <div>
+        <Container>
+          <div className={classes.mediaContainer}>
+            <MediaContainer media={comics} title={medias.COMICS} />
+          </div>
+          <div className={classes.mediaContainer}>
+            <MediaContainer media={series} title={medias.SERIES} />
+          </div>
+          <div className={classes.mediaContainer}>
+            <MediaContainer media={events} title={medias.EVENTS} />
+          </div>
+        </Container>
+      </div>
     </>
   );
 };
