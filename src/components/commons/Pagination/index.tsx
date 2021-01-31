@@ -8,18 +8,22 @@ import strings from '../../../locales/pagination';
 import styles from './styles';
 
 interface PageInfo {
-  currentPage: number;
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
 
 interface Props {
+  currentPage: number;
   pageInfo: PageInfo;
   onPageChange(ACTION: string): void;
 }
 
-const Pagination = ({ pageInfo, onPageChange }: Props): JSX.Element => {
-  const { currentPage, hasNextPage, hasPrevPage } = pageInfo;
+const Pagination = ({
+  currentPage,
+  pageInfo,
+  onPageChange,
+}: Props): JSX.Element => {
+  const { hasNextPage, hasPrevPage } = pageInfo;
   const classes = styles();
   return (
     <Container className={classes.container}>

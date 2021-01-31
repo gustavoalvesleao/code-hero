@@ -10,10 +10,9 @@ The table is composed of 10 Cards, and for each character is displayed its photo
 
 It is possible to search for a character by name. You must provide the full name,
 otherwise, the search will not return any results.
-When the search box is not empty, an "x" button (clear button) is displayed inside the box.
-When clicked, will erase the search input and perform a new request to get all characters again.
-This can be useful when you already performed a search (no data was obtained), and you want
-to reset the results.
+An "x" button (clear button) is displayed inside the box.
+When clicked, the search input is erased, and a new request is performed to get all characters again.
+This can be useful when you already performed a search and want to reset the results.
 
 Getting more characters from the API is possible through the pagination element at the
 bottom of the page.
