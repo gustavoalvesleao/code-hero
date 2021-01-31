@@ -24,17 +24,13 @@ interface MatchParams {
   id: string;
 }
 
-interface QueryParams {
-  limit: number;
-}
-
 type Props = RouteComponentProps<MatchParams> & SetLoadingType;
 
 const IMAGE_VARIANT = 'portrait_uncanny';
 const URL_TYPE = 'wiki';
 
 const medias = { COMICS: 'comics', SERIES: 'series', EVENTS: 'events' };
-const queryParams: QueryParams = { limit: 5 };
+const queryParams = { limit: 5 };
 
 const CharacterDetails = (props: Props): JSX.Element => {
   const classes = styles();

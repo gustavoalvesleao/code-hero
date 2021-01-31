@@ -38,11 +38,9 @@ const AppSearch = ({
         onChange={(e): void => onChange(e.currentTarget.value)}
         onKeyPress={(e): void => onKeyPress(e.key)}
       />
-      {!!searchQuery && (
-        <div className={classes.clearIcon}>
-          <ClearIcon className={classes.icon} onClick={onClearQuery} />
-        </div>
-      )}
+      <div className={classes.clearIcon}>
+        <ClearIcon className={classes.icon} onClick={onClearQuery} />
+      </div>
     </div>
   );
 };
