@@ -6,9 +6,11 @@ export const urlToHttps = (url: string): string =>
   url.replace(/^http:\/\//i, 'https://');
 
 // This function get a unique key, mostly used in map functions. This was necessary
-// due some duplicated items in the info received about the characters
+// due some duplicated items in the info received about the characters.
+// Only use this function if your elements won't change once they are displayed, for instance
+// when you can add or remove items dynamically in a list
 export const getUniqueKey = (cont: string, index: number): string =>
-  `${cont}-${Date.now()}-${index}`;
+  `${cont}${index}`;
 
 // This function builds the url to get a given thumbnail
 export const buildThumbnailUrl = (
