@@ -115,7 +115,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
       setQueryParams({
         ...queryParams,
         offset: 0,
-        name: nameSearchQuery,
+        nameStartsWith: nameSearchQuery,
       });
     }
   };
@@ -127,7 +127,7 @@ const Home = (props: SetLoadingType): JSX.Element => {
 
     const params = { ...queryParams };
     params.offset = 0;
-    delete params.name;
+    delete params.nameStartsWith;
     setQueryParams(params);
   };
 

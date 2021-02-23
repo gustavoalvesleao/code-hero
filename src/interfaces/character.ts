@@ -52,7 +52,7 @@ export interface UrlItems {
 export interface QueryParams {
   offset?: number;
   limit: number;
-  name?: string;
+  nameStartsWith?: string;
 }
 
 // Character Media interface
