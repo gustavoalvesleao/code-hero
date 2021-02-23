@@ -8,9 +8,7 @@ You can try it out [here!](https://mystifying-lamarr-5a9cae.netlify.app)
 The homepage is under the URL /home. This page contains a search box, a table, and a pagination element.
 The table is composed of 10 Cards, and for each character is displayed its photo, name, series, and events.
 
-It is possible to search for a character by name. You must provide the full name,
-otherwise, the search will not return any results.
-An "x" button (clear button) is displayed inside the box.
+It is possible to search for a character by name. An "x" button (clear button) is displayed inside the box.
 When clicked, the search input is erased, and a new request is performed to get all characters again.
 This can be useful when you already performed a search and want to reset the results.
 
